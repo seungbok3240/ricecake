@@ -2,39 +2,49 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>ITEM DETAIL</title>
 </head>
 <body>
-<div>
+<div th:object="${item}" class="container">
     <!--    헤더-->
     <div th:insert="~{admin/fragment/header :: headerParam ('id')}">
     </div>
     <!--    헤더 끝-->
-    <div>
+    <div class="py-3">
         <h3>백설기</h3>
     </div>
     <div>
-        <button>수정하기</button>
-        <img>
-        <div>
+        <button type="button" th:onclick="|location.href='@{/admin/items/{itemId}/edit(itemId=${item.id})}'|" class="btn btn-primary" style="float:right;">수정하기</button>
+    </div>
+    <div class="row">
+        <div class="m-3">
+            <img src="./KakaoTalk_20220112_164317527.jpg" width="300" height="300">
+        </div>
+        <div class="m-3">
             <div>
                 <label for="itemName">상품명</label>
-                <input id="itemName" readonly>백설기
+                <input id="itemName" th:field="*{itemName}" readonly>
             </div>
             <div>
                 <label for="price">가격</label>
-                <input id="price" readonly>10000
+                <input id="price" th:field="*{price}" readonly>
             </div>
             <div>
                 <label for="quantity">수량</label>
-                <input id="quantity" readonly>10
+                <input id="quantity" th:field="*{quantity}" readonly>
             </div>
         </div>
     </div>
-    <hr>
-    <div>
-        <img>
-        <img>
+    <hr class="my-4">
+    <div class="text-center">
+        <img src="./KakaoTalk_20220112_164317527.jpg" width="300" height="300">
+    </div>
+    <div class="text-center">
+        <img src="./KakaoTalk_20220112_164317527.jpg" width="300" height="300">
+    </div>
+    <div class="text-center">
+        <input type="file" id="itemDetailImage">
     </div>
 </div>
 </body>

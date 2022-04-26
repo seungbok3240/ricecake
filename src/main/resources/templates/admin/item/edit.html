@@ -2,48 +2,55 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>ITEM DETAIL</title>
 </head>
 <body>
-<div>
+<div class="container">
     <!--    헤더-->
     <div th:insert="~{admin/fragment/header :: headerParam ('id')}">
     </div>
     <!--    헤더 끝-->
-    <div>
+    <div class="py-3">
         <h3>백설기</h3>
     </div>
-    <div>
+    <form th:action method="post" th:object="${item}">
         <div>
-            <img>
+            <div class="row">
+                <div class="m-3">
+                    <img src="./KakaoTalk_20220112_164317527.jpg" width="300" height="300">
+                </div>
+                <div class="m-3">
+                    <div>
+                        <label for="itemName">상품명</label>
+                        <input type="text" id="itemName" th:field="*{itemName}">
+                    </div>
+                    <div>
+                        <label for="price">가격</label>
+                        <input type="text" id="price" th:field="*{price}">
+                    </div>
+                    <div>
+                        <label for="quantity">수량</label>
+                        <input type="text" id="quantity" th:field="*{quantity}">
+                    </div>
+                </div>
+            </div>
             <input type="file" id="itemImage">
         </div>
-        <div>
-            <div>
-                <label for="itemName">상품명</label>
-                <input id="itemName" readonly>백설기
-            </div>
-            <div>
-                <label for="price">가격</label>
-                <input id="price" readonly>10000
-            </div>
-            <div>
-                <label for="quantity">수량</label>
-                <input id="quantity" readonly>10
-            </div>
+        <hr class="my-4">
+        <div class="text-center">
+            <img src="./KakaoTalk_20220112_164317527.jpg" width="300" height="300">
         </div>
-    </div>
-    <hr>
-    <div>
-        <input type="file" id="itemDetailImage">
-    </div>
-    <div>
-        <img>
-        <img>
-    </div>
-    <div>
-        <button>수정</button>
-    </div>
+        <div class="text-center">
+            <img src="./KakaoTalk_20220112_164317527.jpg" width="300" height="300">
+        </div>
+        <div class="text-center">
+            <input type="file" id="itemDetailImage">
+        </div>
+        <div class="py-3 text-center">
+            <button type="submit">수정</button>
+        </div>
+    </form>
 </div>
 </body>
 </html>

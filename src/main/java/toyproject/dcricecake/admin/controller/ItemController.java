@@ -29,7 +29,7 @@ public class ItemController {
 
     // 상품 추가페이지
     @GetMapping("/items/add")
-    public String addForm() {
+    public String addForm(@ModelAttribute("item") Item item) {
         return "admin/item/add";
     }
 

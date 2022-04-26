@@ -4,6 +4,8 @@ package toyproject.dcricecake.admin.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import toyproject.dcricecake.admin.domain.item.Item;
@@ -34,7 +36,12 @@ public class ItemController {
     }
 
     @PostMapping("/items/add")
-    public String add(@ModelAttribute ItemUpdateForm form, RedirectAttributes redirectAttributes) {
+    public String add(@Validated @ModelAttribute("item") ItemUpdateForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+            return "/admin/item/add";
+        }
+
         Item saveItem = itemService.add(form);
         redirectAttributes.addAttribute("itemId", saveItem.getId());
         return "redirect:/admin/items/{itemId}";
@@ -57,7 +64,12 @@ public class ItemController {
     }
 
     @PostMapping("/items/{itemId}/edit")
-    public String edit(@PathVariable Long itemId, @ModelAttribute ItemUpdateForm form, RedirectAttributes redirectAttributes) {
+    public String edit(@PathVariable Long itemId, @Validated @ModelAttribute("item") ItemUpdateForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+            return "admin/item/edit";
+        }
+
         itemService.update(itemId, form);
         return "redirect:/admin/items/{itemId}";
     }

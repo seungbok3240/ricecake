@@ -3,6 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .container {
+            max-width: 800px;
+        }
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+    </style>
     <title>ITEM DETAIL</title>
 </head>
 <body>
@@ -24,14 +33,23 @@
                     <div>
                         <label for="itemName">상품명</label>
                         <input type="text" id="itemName" th:field="*{itemName}">
+                        <div class="field-error" th:errors="*{itemName}">
+                            상품명 오류
+                        </div>
                     </div>
                     <div>
                         <label for="price">가격</label>
                         <input type="text" id="price" th:field="*{price}">
+                        <div class="field-error" th:errors="*{price}">
+                            가격 오류
+                        </div>
                     </div>
                     <div>
                         <label for="quantity">수량</label>
                         <input type="text" id="quantity" th:field="*{quantity}">
+                        <div class="field-error" th:errors="*{quantity}">
+                            수량 오류
+                        </div>
                     </div>
                 </div>
             </div>
@@ -48,7 +66,7 @@
             <input type="file" id="itemDetailImage">
         </div>
         <div class="py-3 text-center">
-            <button type="submit">수정</button>
+            <button type="submit" class="btn btn-primary">수정</button>
         </div>
     </form>
 </div>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>HOME</title>
+</head>
+<body>
+<div>
+<!--    헤더-->
+    <div th:insert="~{admin/fragment/header :: headerParam ('id')}">
+    </div>
+<!--    헤더 끝-->
+    <div>
+        <h3>상품 목록</h3>
+        <button>상품 추가</button>
+    </div>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>상품명</th>
+                <th>가격</th>
+                <th>잔여 수량</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>백설기</td>
+                <td>가격</td>
+                <td>잔여 수량</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

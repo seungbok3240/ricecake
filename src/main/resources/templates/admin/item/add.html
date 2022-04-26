@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ITEM DETAIL</title>
+</head>
+<body>
+<div>
+    <!--    헤더-->
+    <div th:insert="~{admin/fragment/header :: headerParam ('id')}">
+    </div>
+    <!--    헤더 끝-->
+    <div>
+        <h3>상품추가</h3>
+    </div>
+    <div>
+        <div>
+            <img>
+            <input type="file" id="itemImage">
+        </div>
+        <div>
+            <div>
+                <label for="itemName">상품명</label>
+                <input type="text" id="itemName" value="백설기">
+            </div>
+            <div>
+                <label for="price">가격</label>
+                <input type="text" id="price" value="10000">
+            </div>
+            <div>
+                <label for="quantity">수량</label>
+                <input type="text" id="quantity" value="10">
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <input type="file" id="itemDetailImage">
+    </div>
+    <div>
+        <img>
+        <img>
+    </div>
+    <div>
+        <button>추가</button>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<header th:fragment="headerParam (id)">
+    <div>
+        <h2>동촌 떡방앗간</h2>
+    </div>
+    <div>
+        <a th:text="${id}">id</a>
+        <a>로그아웃</a>
+    </div>
+    <hr>
+</header>
+</body>
+</html>

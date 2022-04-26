@@ -6,6 +6,8 @@ import toyproject.dcricecake.admin.domain.item.Item;
 import toyproject.dcricecake.admin.domain.item.ItemUpdateForm;
 import toyproject.dcricecake.admin.repository.item.ItemRepository;
 
+import java.util.List;
+
 /**
  * 상품 추가, 수정, 삭제
  */
@@ -16,7 +18,7 @@ public class ItemService {
 
     private final ItemRepository repository;
 
-    Item add(ItemUpdateForm form) {
+    public Item add(ItemUpdateForm form) {
         Item item = new Item();
         itemMapper(item, form);
 
@@ -27,9 +29,17 @@ public class ItemService {
         repository.delete(id);
     }
 
-    void update(Long itemId, ItemUpdateForm form) {
+    public void update(Long itemId, ItemUpdateForm form) {
         Item findItem = repository.findById(itemId);
         itemMapper(findItem, form);
+    }
+
+    public List<Item> findAll() {
+        return repository.findAll();
+    }
+
+    public Item findById(Long id) {
+        return repository.findById(id);
     }
 
     private void itemMapper(Item item, ItemUpdateForm form) {

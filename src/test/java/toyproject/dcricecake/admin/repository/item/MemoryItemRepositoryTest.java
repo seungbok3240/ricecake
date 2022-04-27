@@ -1,9 +1,8 @@
-package toyproject.dcricecake.admin.domain.repository;
+package toyproject.dcricecake.admin.repository.item;
 
 import org.junit.jupiter.api.Test;
 import toyproject.dcricecake.admin.domain.item.Item;
-import toyproject.dcricecake.admin.repository.item.ItemRepository;
-import toyproject.dcricecake.admin.repository.item.MemoryItemRepository;
+
 
 import java.util.List;
 

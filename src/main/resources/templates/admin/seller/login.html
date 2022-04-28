@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Login</title>
+    <style>
+        .field-error {
+            border-color: red;
+            color: red;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -14,11 +20,17 @@
         <form th:action method="post" th:object="${form}">
             <div class="form-group">
                 <label class="control-label col-sm-2" for="loginId">아이디</label>
-                <input type="text" id="loginId" th:field="*{loginId}" placeholder="아이디를 입력해주세요.">
+                <input type="password" id="loginId" th:field="*{loginId}" placeholder="아이디를 입력해주세요.">
+                <div th:errors="*{loginId}" class="field-error">
+                    오류 메시지
+                </div>
             </div>
             <div>
                 <label class="control-label col-sm-2" for="password">비밀번호</label>
-                <input type="text" id="password" th:field="*{password}" placeholder="비밀번호를 입력해주세요.">
+                <input type="password" id="password" th:field="*{password}" placeholder="비밀번호를 입력해주세요.">
+                <div th:errors="*{password}" class="field-error">
+                    오류 메시지
+                </div>
             </div>
             <div>
                 <button type="submit" class="btn btn-primary my-5">로그인</button>

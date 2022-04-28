@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import toyproject.dcricecake.admin.domain.seller.Seller;
 import toyproject.dcricecake.admin.domain.seller.SellerSignupForm;
 import toyproject.dcricecake.admin.domain.seller.login.SellerLoginForm;
@@ -31,7 +32,7 @@ public class SellerController {
     }
 
     @PostMapping("/new")
-    public String singup(@Validated @ModelAttribute("form") SellerSignupForm form, BindingResult bindingResult, HttpServletRequest request) {
+    public String singup(@Validated @ModelAttribute("form") SellerSignupForm form, BindingResult bindingResult, HttpServletRequest request, RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
             return "admin/seller/new";
@@ -41,6 +42,8 @@ public class SellerController {
         HttpSession session = request.getSession();
         session.setAttribute(SellerSessionConst.LOGIN_MEMBER, seller);
 
+        redirectAttributes.addAttribute("id", seller.getLoginId());
+        System.out.println("seller.getLoginId() = " + seller.getLoginId());
         return "redirect:/admin";
     }
 

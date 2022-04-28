@@ -13,7 +13,7 @@
 <body>
 <div class="container">
 <!--    헤더-->
-    <div th:insert="~{admin/fragment/header :: headerParam ('id')}">
+    <div th:insert="~{admin/fragment/header :: headerParam (id)}" th:with="id=${param.id}">
     </div>
 <!--    헤더 끝-->
     <div class="py-3">

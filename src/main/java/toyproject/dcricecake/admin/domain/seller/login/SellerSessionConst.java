@@ -1,4 +1,4 @@
-package toyproject.dcricecake.admin.login;
+package toyproject.dcricecake.admin.domain.seller.login;
 
 public interface SellerSessionConst {
     String LOGIN_MEMBER = "loginSeller";

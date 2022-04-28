@@ -14,11 +14,20 @@ public class SellerService {
 
     // 회원가입
     public Seller singup(SellerSignupForm form) {
+        // 비밀번호, 비밀번호 확인 비교 (22.04.28)
+
         // 중복 아이디 체크 구현 필요(22.04.28)
 
 
         // 회원가입
         return repository.save(form);
+    }
+
+    // 로그인
+    public Seller login(String loginId, String password) {
+        return repository.findByLoginId(loginId)
+                .filter(s -> s.getPassword().equals(password))
+                .orElse(null);
     }
 
     // 회원 찾기(아이디로)

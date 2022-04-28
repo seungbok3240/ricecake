@@ -43,7 +43,6 @@ public class SellerController {
         session.setAttribute(SellerSessionConst.LOGIN_MEMBER, seller);
 
         redirectAttributes.addAttribute("id", seller.getLoginId());
-        System.out.println("seller.getLoginId() = " + seller.getLoginId());
         return "redirect:/admin";
     }
 

@@ -13,13 +13,14 @@ public class MemorySellerRepository implements SellerRepository {
     private long sequence = 0L;
 
     @Override
-    public void save(SellerSignupForm form) {
+    public Seller save(SellerSignupForm form) {
         Seller seller = new Seller();
         seller.setId(sequence++);
         seller.setLoginId(form.getLoginId());
         seller.setPassword(form.getPassword());
 
         store.put(seller.getId(), seller);
+        return seller;
     }
 
     @Override
@@ -37,5 +38,10 @@ public class MemorySellerRepository implements SellerRepository {
     @Override
     public void delete(Long id) {
         store.remove(id);
+    }
+
+    // 테스트 케이스용
+    public void clearAll() {
+        store.clear();
     }
 }

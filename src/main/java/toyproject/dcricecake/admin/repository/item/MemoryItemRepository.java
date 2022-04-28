@@ -15,7 +15,7 @@ import java.util.Map;
 @Repository
 public class MemoryItemRepository implements ItemRepository{
 
-    private final Map<Long, Item> store = new HashMap<>();
+    private static Map<Long, Item> store = new HashMap<>();
     private long sequence = 0L;
 
     @Override
@@ -38,5 +38,10 @@ public class MemoryItemRepository implements ItemRepository{
     @Override
     public void delete(Long id) {
         store.remove(id);
+    }
+
+    // 테스트 케이스용
+    public void clearAll() {
+        store.clear();
     }
 }

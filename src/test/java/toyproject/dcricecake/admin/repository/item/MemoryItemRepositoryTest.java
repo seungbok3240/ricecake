@@ -1,5 +1,6 @@
 package toyproject.dcricecake.admin.repository.item;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import toyproject.dcricecake.admin.domain.item.Item;
 
@@ -10,7 +11,12 @@ import static org.assertj.core.api.Assertions.*;
 
 class MemoryItemRepositoryTest {
 
-    ItemRepository repository = new MemoryItemRepository();
+    MemoryItemRepository repository = new MemoryItemRepository();
+
+    @AfterEach
+    void after() {
+        repository.clearAll();
+    }
 
     @Test
     void saveAndFindById() {

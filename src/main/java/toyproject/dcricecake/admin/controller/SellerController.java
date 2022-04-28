@@ -24,7 +24,7 @@ public class SellerController {
 
     // 회원가입 페이지
     @GetMapping("/new")
-    public String signupForm() {
+    public String signupForm(@ModelAttribute("form") SellerSignupForm form) {
         return "admin/seller/new";
     }
 
@@ -36,7 +36,7 @@ public class SellerController {
 
     // 로그인 페이지
     @GetMapping("/login")
-    public String loginForm() {
+    public String loginForm(@ModelAttribute("form") SellerLoginForm form) {
         return "admin/seller/login";
     }
 

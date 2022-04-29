@@ -32,7 +32,7 @@ public class SellerController {
     }
 
     @PostMapping("/new")
-    public String singup(@Validated @ModelAttribute("form") SellerSignupForm form, BindingResult bindingResult, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+    public String singup(@Validated @ModelAttribute("form") SellerSignupForm form, BindingResult bindingResult, HttpServletRequest request) {
 
         if (bindingResult.hasErrors()) {
             return "admin/seller/new";
@@ -42,7 +42,6 @@ public class SellerController {
         HttpSession session = request.getSession();
         session.setAttribute(SellerSessionConst.LOGIN_MEMBER, seller);
 
-        redirectAttributes.addAttribute("id", seller.getLoginId());
         return "redirect:/admin";
     }
 

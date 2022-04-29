@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import toyproject.dcricecake.admin.domain.item.Item;
 import toyproject.dcricecake.admin.domain.item.ItemUpdateForm;
+import toyproject.dcricecake.admin.domain.seller.Seller;
+import toyproject.dcricecake.admin.domain.seller.login.SellerSessionConst;
 import toyproject.dcricecake.admin.service.ItemService;
 
 import java.util.List;
@@ -23,7 +25,12 @@ public class ItemController {
 
     //메인 페이지
     @GetMapping
-    public String home(Model model) {
+    public String home(Model model, @SessionAttribute(name = SellerSessionConst.LOGIN_MEMBER, required = false) Seller seller) {
+        if (seller == null) {
+            return "admin/home";
+        }
+        model.addAttribute("loginId", seller.getLoginId());
+
         List<Item> items = itemService.findAll();
         model.addAttribute("items", items);
         return "admin/home";

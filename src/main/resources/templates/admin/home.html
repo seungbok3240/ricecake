@@ -32,8 +32,8 @@
             </thead>
             <tbody>
             <tr th:each="item : ${items}">
-                <td th:text="${item.id}">1</td>
-                <td th:text="${item.itemName}">백설기</td>
+                <td><a th:text="${item.id}" th:href="@{/admin/items/{itemId}(itemId=${item.id})}">1</a></td>
+                <td><a th:text="${item.itemName}" th:href="@{/admin/items/{itemId}(itemId=${item.id})}">백설기</a></td>
                 <td th:text="${item.price}">1000</td>
                 <td th:text="${item.quantity}">10</td>
             </tr>

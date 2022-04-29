@@ -2,6 +2,7 @@ package toyproject.dcricecake.admin.repository.item;
 
 import org.springframework.stereotype.Repository;
 import toyproject.dcricecake.admin.domain.item.Item;
+import toyproject.dcricecake.admin.domain.item.ItemUpdateForm;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,6 +39,15 @@ public class MemoryItemRepository implements ItemRepository{
     @Override
     public void delete(Long id) {
         store.remove(id);
+    }
+
+    @Override
+    public void update(Long itemId, ItemUpdateForm form) {
+        Item findItem = findById(itemId);
+
+        findItem.setItemName(form.getItemName());
+        findItem.setPrice(form.getPrice());
+        findItem.setQuantity(form.getQuantity());
     }
 
     // 테스트 케이스용

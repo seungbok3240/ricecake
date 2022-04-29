@@ -1,6 +1,7 @@
 package toyproject.dcricecake.admin.repository.item;
 
 import toyproject.dcricecake.admin.domain.item.Item;
+import toyproject.dcricecake.admin.domain.item.ItemUpdateForm;
 
 import java.util.List;
 
@@ -13,4 +14,6 @@ public interface ItemRepository {
     List<Item> findAll();
 
     void delete(Long id);
+
+    void update(Long itemId, ItemUpdateForm form);
 }

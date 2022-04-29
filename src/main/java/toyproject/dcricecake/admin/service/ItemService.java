@@ -6,6 +6,7 @@ import toyproject.dcricecake.admin.domain.item.Item;
 import toyproject.dcricecake.admin.domain.item.ItemUpdateForm;
 import toyproject.dcricecake.admin.repository.item.ItemRepository;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 /**
@@ -30,8 +31,7 @@ public class ItemService {
     }
 
     public void update(Long itemId, ItemUpdateForm form) {
-        Item findItem = repository.findById(itemId);
-        itemMapper(findItem, form);
+        repository.update(itemId, form);
     }
 
     public List<Item> findAll() {

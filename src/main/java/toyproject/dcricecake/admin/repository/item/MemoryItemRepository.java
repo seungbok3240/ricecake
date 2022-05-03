@@ -10,20 +10,17 @@ import java.util.List;
 import java.util.Map;
 
 
-/**
- * 나중에 H2 DB로 바꿀 예정
- */
-@Repository
+// @Repository
 public class MemoryItemRepository implements ItemRepository{
 
     private static Map<Long, Item> store = new HashMap<>();
     private long sequence = 0L;
 
     @Override
-    public Item save(Item item) {
+    public Long save(Item item) {
         item.setId(sequence++);
         store.put(item.getId(), item);
-        return item;
+        return item.getId();
     }
 
     @Override

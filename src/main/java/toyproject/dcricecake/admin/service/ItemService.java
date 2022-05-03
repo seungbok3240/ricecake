@@ -19,7 +19,7 @@ public class ItemService {
 
     private final ItemRepository repository;
 
-    public Item add(ItemUpdateForm form) {
+    public Long add(ItemUpdateForm form) {
         Item item = new Item();
         itemMapper(item, form);
 

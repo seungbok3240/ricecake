@@ -2,6 +2,7 @@ package toyproject.dcricecake.admin.controller;
 
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +20,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin")
 @RequiredArgsConstructor
+@Slf4j
 public class ItemController {
 
     private final ItemService itemService;
@@ -49,8 +51,9 @@ public class ItemController {
             return "/admin/item/add";
         }
 
-        Item saveItem = itemService.add(form);
-        redirectAttributes.addAttribute("itemId", saveItem.getId());
+        Long itemId = itemService.add(form);
+        log.info("Save item = {}", itemId);
+        redirectAttributes.addAttribute("itemId", itemId);
         return "redirect:/admin/items/{itemId}";
     }
 

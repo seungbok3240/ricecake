@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface SellerRepository {
 
-    Seller save(SellerSignupForm form);
+    void save(SellerSignupForm form);
 
     void delete(Long id);
 

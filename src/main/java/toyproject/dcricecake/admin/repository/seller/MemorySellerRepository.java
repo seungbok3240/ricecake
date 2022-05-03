@@ -6,21 +6,20 @@ import toyproject.dcricecake.admin.domain.seller.SellerSignupForm;
 
 import java.util.*;
 
-@Repository
+//@Repository
 public class MemorySellerRepository implements SellerRepository {
 
     private final Map<Long, Seller> store = new HashMap<>();
     private long sequence = 0L;
 
     @Override
-    public Seller save(SellerSignupForm form) {
+    public void save(SellerSignupForm form) {
         Seller seller = new Seller();
         seller.setId(sequence++);
         seller.setLoginId(form.getLoginId());
         seller.setPassword(form.getPassword());
 
         store.put(seller.getId(), seller);
-        return seller;
     }
 
     @Override

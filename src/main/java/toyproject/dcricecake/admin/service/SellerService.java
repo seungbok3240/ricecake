@@ -13,14 +13,14 @@ public class SellerService {
     private final SellerRepository repository;
 
     // 회원가입
-    public Seller singup(SellerSignupForm form) {
+    public void singup(SellerSignupForm form) {
         // 비밀번호, 비밀번호 확인 비교 (22.04.28)
 
         // 중복 아이디 체크 구현 필요(22.04.28)
 
 
         // 회원가입
-        return repository.save(form);
+        repository.save(form);
     }
 
     // 로그인

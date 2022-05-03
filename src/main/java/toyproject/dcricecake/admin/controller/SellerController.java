@@ -38,7 +38,9 @@ public class SellerController {
             return "admin/seller/new";
         }
 
-        Seller seller = sellerService.singup(form);
+        sellerService.singup(form);
+        Seller seller = sellerService.findByLoginId(form.getLoginId());
+
         HttpSession session = request.getSession();
         session.setAttribute(SellerSessionConst.LOGIN_MEMBER, seller);
 

@@ -29,10 +29,11 @@ public class CustomerController {
 
     @PostMapping("/new")
     public String signup(@ModelAttribute("form") CustomerSignupForm form, HttpServletRequest request) {
-        Customer saveCustomer = customerRepository.save(form);
+        customerRepository.save(form);
+        Customer customer = customerRepository.findByLoginId(form.getLoginId()).get();
 
         HttpSession session = request.getSession();
-        session.setAttribute(CustomerSessionConst.LOGIN_MEMBER, saveCustomer);
+        session.setAttribute(CustomerSessionConst.LOGIN_MEMBER, customer);
         return "redirect:/";
     }
 

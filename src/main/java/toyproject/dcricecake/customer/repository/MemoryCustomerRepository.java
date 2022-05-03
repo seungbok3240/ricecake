@@ -13,14 +13,13 @@ public class MemoryCustomerRepository implements CustomerRepository {
     private long sequence = 0L;
 
     @Override
-    public Customer save(CustomerSignupForm form) {
+    public void save(CustomerSignupForm form) {
         Customer customer = new Customer();
         customer.setId(sequence++);
         customer.setLoginId(form.getLoginId());
         customer.setPassword(form.getPassword());
 
         store.put(customer.getId(), customer);
-        return customer;
     }
 
     @Override

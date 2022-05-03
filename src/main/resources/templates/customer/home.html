@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .container {
+            max-width: 800px;
+        }
+    </style>
+    <title>HOME</title>
+</head>
+<body>
+<div class="container">
+    <!--    헤더-->
+    <div th:insert="~{customer/fragment/header :: customerHeaderParam (id)}" th:with="id=${loginId}">
+    </div>
+    <!--    헤더 끝-->
+    <div class="py-3">
+        <h3>상품 목록</h3>
+    </div>
+    <div class="py-5">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>상품명</th>
+                <th>가격</th>
+                <th>잔여 수량</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${items}">
+                <td><a th:text="${item.id}" th:href="@{/items/{itemId}(itemId=${item.id})}">1</a></td>
+                <td><a th:text="${item.itemName}" th:href="@{/items/{itemId}(itemId=${item.id})}">백설기</a></td>
+                <td th:text="${item.price}">1000</td>
+                <td th:text="${item.quantity}">10</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

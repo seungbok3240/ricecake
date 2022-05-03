@@ -4,11 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import toyproject.dcricecake.admin.domain.item.Item;
 import toyproject.dcricecake.admin.domain.item.ItemUpdateForm;
-import toyproject.dcricecake.admin.domain.seller.Seller;
 import toyproject.dcricecake.admin.repository.item.ItemRepository;
 import toyproject.dcricecake.customer.domain.Customer;
 import toyproject.dcricecake.customer.domain.CustomerSignupForm;
 import toyproject.dcricecake.customer.repository.CustomerRepository;
+import toyproject.dcricecake.exception.MyNotSamePWException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -54,6 +54,9 @@ public class CustomerService {
     // 회원가입
     public void signup(CustomerSignupForm form) {
         // 비밀번호 다름 오류
+        if (!form.getPassword().equals(form.getCheckPassword())) {
+            throw new MyNotSamePWException();
+        }
 
         // 중복아이디 오류
 

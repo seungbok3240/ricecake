@@ -1,6 +1,5 @@
 package toyproject.dcricecake.admin.repository.item;
 
-import org.springframework.stereotype.Repository;
 import toyproject.dcricecake.admin.domain.item.Item;
 import toyproject.dcricecake.admin.domain.item.ItemUpdateForm;
 

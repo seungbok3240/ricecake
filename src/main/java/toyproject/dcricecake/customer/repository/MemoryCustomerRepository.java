@@ -6,7 +6,7 @@ import toyproject.dcricecake.customer.domain.CustomerSignupForm;
 
 import java.util.*;
 
-@Repository
+//@Repository
 public class MemoryCustomerRepository implements CustomerRepository {
 
     private final Map<Long, Customer> store = new HashMap<>();

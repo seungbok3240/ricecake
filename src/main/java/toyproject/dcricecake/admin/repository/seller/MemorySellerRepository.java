@@ -1,6 +1,5 @@
 package toyproject.dcricecake.admin.repository.seller;
 
-import org.springframework.stereotype.Repository;
 import toyproject.dcricecake.admin.domain.seller.Seller;
 import toyproject.dcricecake.admin.domain.seller.SellerSignupForm;
 

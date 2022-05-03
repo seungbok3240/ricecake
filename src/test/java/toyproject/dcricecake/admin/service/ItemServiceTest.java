@@ -1,18 +1,9 @@
 package toyproject.dcricecake.admin.service;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import toyproject.dcricecake.admin.domain.item.Item;
 import toyproject.dcricecake.admin.domain.item.ItemUpdateForm;
 import toyproject.dcricecake.admin.repository.item.ItemRepository;
 import toyproject.dcricecake.admin.repository.item.MemoryItemRepository;
-
-import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class ItemServiceTest {
 

@@ -14,6 +14,7 @@ import toyproject.dcricecake.admin.domain.seller.SellerSignupForm;
 import toyproject.dcricecake.admin.domain.seller.login.SellerLoginForm;
 import toyproject.dcricecake.admin.domain.seller.login.SellerSessionConst;
 import toyproject.dcricecake.admin.service.SellerService;
+import toyproject.dcricecake.exception.MyNotSamePWException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -34,11 +35,16 @@ public class SellerController {
     @PostMapping("/new")
     public String singup(@Validated @ModelAttribute("form") SellerSignupForm form, BindingResult bindingResult, HttpServletRequest request) {
 
-        if (bindingResult.hasErrors()) {
-            return "admin/seller/new";
+        try {
+            sellerService.signup(form);
+        } catch (MyNotSamePWException e) {
+            bindingResult.reject("DiffPW", "비밀번호가 일치하지 않습니다.");
+        } finally {
+            if (bindingResult.hasErrors()) {
+                return "admin/seller/new";
+            }
         }
 
-        sellerService.singup(form);
         Seller seller = sellerService.findByLoginId(form.getLoginId());
 
         HttpSession session = request.getSession();

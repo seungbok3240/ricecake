@@ -12,6 +12,7 @@ import toyproject.dcricecake.customer.domain.CustomerSignupForm;
 import toyproject.dcricecake.customer.domain.login.CustomerSessionConst;
 import toyproject.dcricecake.customer.repository.CustomerRepository;
 import toyproject.dcricecake.customer.service.CustomerService;
+import toyproject.dcricecake.exception.MyNotSamePWException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -32,11 +33,16 @@ public class CustomerController {
     @PostMapping("/new")
     public String signup(@Validated @ModelAttribute("form") CustomerSignupForm form, BindingResult bindingResult, HttpServletRequest request) {
 
-        if (bindingResult.hasErrors()) {
-            return "customer/new";
+        try {
+            customerService.signup(form);
+        } catch (MyNotSamePWException e) {
+            bindingResult.reject("DiffPW", "비밀번호가 일치하지 않습니다.");
+        } finally {
+            if (bindingResult.hasErrors()) {
+                return "customer/new";
+            }
         }
 
-        customerService.signup(form);
         Customer customer = customerService.findByLoginId(form.getLoginId());
 
         HttpSession session = request.getSession();

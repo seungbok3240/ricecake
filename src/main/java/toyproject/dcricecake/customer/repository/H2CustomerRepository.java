@@ -2,6 +2,7 @@ package toyproject.dcricecake.customer.repository;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 import toyproject.dcricecake.customer.domain.Customer;
 import toyproject.dcricecake.customer.domain.CustomerSignupForm;
 
@@ -9,6 +10,7 @@ import javax.sql.DataSource;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class H2CustomerRepository implements CustomerRepository{
 
     private final JdbcTemplate template;

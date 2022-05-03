@@ -1,16 +1,9 @@
 package toyproject.dcricecake.admin.service;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import toyproject.dcricecake.admin.domain.seller.Seller;
 import toyproject.dcricecake.admin.domain.seller.SellerSignupForm;
 import toyproject.dcricecake.admin.repository.seller.MemorySellerRepository;
 import toyproject.dcricecake.admin.repository.seller.SellerRepository;
-
-import java.util.NoSuchElementException;
-
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class SellerServiceTest {
 

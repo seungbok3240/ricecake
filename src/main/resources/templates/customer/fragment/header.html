@@ -10,8 +10,14 @@
         <h2><a href="/">동촌 떡방앗간</a></h2>
     </div>
     <div class="float-right">
-        <a th:text="${id}">id</a>님
-        <button th:onclick="|location.href='@{/logout}'|" class="btn btn-link">로그아웃</button>
+        <div th:if="${id == null}">
+            <button th:onclick="|location.href='@{/login}'|" class="btn btn-link">로그인</button>
+            <button th:onclick="|location.href='@{/new}'|" class="btn btn-link">회원가입</button>
+        </div>
+        <div th:if="${id != null}">
+            <a th:text="${id}">id</a>님
+            <button th:onclick="|location.href='@{/logout}'|" class="btn btn-link">로그아웃</button>
+        </div>
     </div>
 </header>
 </body>

@@ -29,6 +29,9 @@ public class CustomerPageController {
     @GetMapping
     public String home(Model model, @SessionAttribute(name = CustomerSessionConst.LOGIN_MEMBER, required = false)Customer customer) {
         if (customer == null) {
+            List<Item> items = repository.findAll();
+            model.addAttribute("items", items);
+
             return "/customer/home";
         }
         model.addAttribute("loginId", customer.getLoginId());

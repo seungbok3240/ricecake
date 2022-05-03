@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .container {
+            max-width: 800px;
+        }
+    </style>
+    <title>HOME</title>
+</head>
+<body>
+<div class="container">
+    <div class="my-5">
+        <h2>구매완료</h2>
+    </div>
+    <div>
+        <h3>주문이 완료되었습니다.</h3>
+    </div>
+    <div class="row" th:object="${item}">
+        <div class="m-4">
+            <img src="./KakaoTalk_20220112_164317527.jpg" width="300" height="300">
+        </div>
+        <div class="m-4">
+            <div th:text="*{itemName}">백설기</div>
+            <div th:text="*{price}">10,000원</div>
+            <div th:text="${param.buyQuantity}">수량: 1개</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

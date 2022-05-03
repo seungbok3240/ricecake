@@ -30,12 +30,18 @@ public class CustomerController {
     }
 
     @PostMapping("/new")
-    public String signup(@Validated @ModelAttribute("form") CustomerSignupForm form, HttpServletRequest request) {
-        customerRepository.save(form);
-        Customer customer = customerRepository.findByLoginId(form.getLoginId()).get();
+    public String signup(@Validated @ModelAttribute("form") CustomerSignupForm form, BindingResult bindingResult, HttpServletRequest request) {
+
+        if (bindingResult.hasErrors()) {
+            return "customer/new";
+        }
+
+        customerService.signup(form);
+        Customer customer = customerService.findByLoginId(form.getLoginId());
 
         HttpSession session = request.getSession();
         session.setAttribute(CustomerSessionConst.LOGIN_MEMBER, customer);
+
         return "redirect:/";
     }
 

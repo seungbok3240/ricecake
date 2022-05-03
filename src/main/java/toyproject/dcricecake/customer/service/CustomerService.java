@@ -4,8 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import toyproject.dcricecake.admin.domain.item.Item;
 import toyproject.dcricecake.admin.domain.item.ItemUpdateForm;
+import toyproject.dcricecake.admin.domain.seller.Seller;
 import toyproject.dcricecake.admin.repository.item.ItemRepository;
 import toyproject.dcricecake.customer.domain.Customer;
+import toyproject.dcricecake.customer.domain.CustomerSignupForm;
 import toyproject.dcricecake.customer.repository.CustomerRepository;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,11 +43,28 @@ public class CustomerService {
                 .orElse(null);
     }
 
+    // 로그아웃
     public void logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate();
         }
     }
+
+    // 회원가입
+    public void signup(CustomerSignupForm form) {
+        // 비밀번호 다름 오류
+
+        // 중복아이디 오류
+
+
+        customerRepository.save(form);
+    }
+
+    // 회원 찾기(아이디로)
+    public Customer findByLoginId(String loginId) {
+        return customerRepository.findByLoginId(loginId).get();
+    }
+
 
 }

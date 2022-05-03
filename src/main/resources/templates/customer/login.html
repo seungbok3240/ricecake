@@ -32,6 +32,9 @@
                     오류 메시지
                 </div>
             </div>
+            <div th:if="${#fields.hasGlobalErrors()}">
+                <p class="field-error" th:text="${#fields.globalErrors()[0]}">회원조회X</p>
+            </div>
             <div>
                 <button type="submit" class="btn btn-primary my-5">로그인</button>
                 <button type="button" class="btn btn-link" th:onclick="|location.href='@{/new}'|">회원가입</button>

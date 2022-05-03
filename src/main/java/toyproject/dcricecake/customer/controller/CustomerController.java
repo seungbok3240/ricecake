@@ -2,6 +2,8 @@ package toyproject.dcricecake.customer.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +30,7 @@ public class CustomerController {
     }
 
     @PostMapping("/new")
-    public String signup(@ModelAttribute("form") CustomerSignupForm form, HttpServletRequest request) {
+    public String signup(@Validated @ModelAttribute("form") CustomerSignupForm form, HttpServletRequest request) {
         customerRepository.save(form);
         Customer customer = customerRepository.findByLoginId(form.getLoginId()).get();
 
@@ -44,11 +46,16 @@ public class CustomerController {
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute("form") CustomerSignupForm form, HttpServletRequest request) {
+    public String login(@Validated @ModelAttribute("form") CustomerSignupForm form, BindingResult bindingResult, HttpServletRequest request) {
         Customer customer = customerService.login(form.getLoginId(), form.getPassword());
 
-        if (customer != null) {
+        if (customer == null) {
             // 로그인 실패
+            bindingResult.reject("loginFail", "아이디와 비밀번호를 확인해주세요.");
+        }
+
+        if (bindingResult.hasErrors()) {
+            return "customer/login";
         }
 
         // 로그인 성공

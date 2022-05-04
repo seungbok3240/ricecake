@@ -9,6 +9,7 @@ import toyproject.dcricecake.customer.domain.Customer;
 import toyproject.dcricecake.customer.domain.CustomerSignupForm;
 import toyproject.dcricecake.customer.repository.CustomerRepository;
 import toyproject.dcricecake.exception.MyNotSamePWException;
+import toyproject.dcricecake.exception.MySameLoginIdException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -59,6 +60,9 @@ public class CustomerService {
         }
 
         // 중복아이디 오류
+        if (customerRepository.findByLoginId(form.getLoginId()).get() != null) {
+            throw new MySameLoginIdException();
+        }
 
 
         customerRepository.save(form);

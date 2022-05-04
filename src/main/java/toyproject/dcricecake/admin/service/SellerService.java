@@ -6,6 +6,7 @@ import toyproject.dcricecake.admin.domain.seller.Seller;
 import toyproject.dcricecake.admin.domain.seller.SellerSignupForm;
 import toyproject.dcricecake.admin.repository.seller.SellerRepository;
 import toyproject.dcricecake.exception.MyNotSamePWException;
+import toyproject.dcricecake.exception.MySameLoginIdException;
 
 @Service
 @RequiredArgsConstructor
@@ -21,6 +22,9 @@ public class SellerService {
         }
 
         // 중복 아이디 체크 구현 필요(22.04.28)
+        if (repository.findByLoginId(form.getLoginId()).get() != null) {
+            throw new MySameLoginIdException();
+        }
 
 
         // 회원가입

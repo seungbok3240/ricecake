@@ -1,6 +1,7 @@
 package toyproject.dcricecake.admin.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -15,10 +16,12 @@ import toyproject.dcricecake.admin.domain.seller.login.SellerLoginForm;
 import toyproject.dcricecake.admin.domain.seller.login.SellerSessionConst;
 import toyproject.dcricecake.admin.service.SellerService;
 import toyproject.dcricecake.exception.MyNotSamePWException;
+import toyproject.dcricecake.exception.MySameLoginIdException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+@Slf4j
 @Controller
 @RequestMapping("/admin")
 @RequiredArgsConstructor
@@ -38,7 +41,11 @@ public class SellerController {
         try {
             sellerService.signup(form);
         } catch (MyNotSamePWException e) {
-            bindingResult.reject("DiffPW", "비밀번호가 일치하지 않습니다.");
+            log.error("Not Same PW / check PW", e);
+            bindingResult.rejectValue("checkPassword", "DiffPW", "비밀번호가 일치하지 않습니다.");
+        } catch (MySameLoginIdException e) {
+            log.error("Same LoginId Exception", e);
+            bindingResult.reject("SameID", "이미 사용중인 아이디입니다.");
         } finally {
             if (bindingResult.hasErrors()) {
                 return "admin/seller/new";

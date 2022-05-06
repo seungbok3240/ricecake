@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.util.List;
 
-@Repository
+//@Repository
 public class H2ItemRepository implements ItemRepository{
 
     private final JdbcTemplate template;

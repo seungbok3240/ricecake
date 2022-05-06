@@ -23,7 +23,7 @@
     <div class="py-3">
         <h3>상품추가</h3>
     </div>
-    <form th:action th:object="${item}" method="post">
+    <form th:action th:object="${item}" method="post" enctype="multipart/form-data">
         <div>
             <div class="row">
                 <div class="m-3">
@@ -53,7 +53,7 @@
                     </div>
                 </div>
             </div>
-            <input type="file" id="itemImage">
+            <input type="file" id="itemImage" th:field="*{image}">
         </div>
         <hr class="my-4">
         <div class="text-center">
@@ -63,7 +63,7 @@
             <img src="./KakaoTalk_20220112_164317527.jpg" width="300" height="300">
         </div>
         <div class="text-center">
-            <input type="file" id="itemDetailImage">
+            <input type="file" id="itemDetailImage" multiple="multiple" th:field="*{detailImages}">
         </div>
         <div class="py-3 text-center">
             <button type="submit" class="btn btn-primary">추가</button>

@@ -3,6 +3,8 @@ package toyproject.dcricecake.admin.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,8 +15,10 @@ import toyproject.dcricecake.admin.domain.item.Item;
 import toyproject.dcricecake.admin.domain.item.ItemUpdateForm;
 import toyproject.dcricecake.admin.domain.seller.Seller;
 import toyproject.dcricecake.admin.domain.seller.login.SellerSessionConst;
+import toyproject.dcricecake.admin.file.FileStore;
 import toyproject.dcricecake.admin.service.ItemService;
 
+import java.net.MalformedURLException;
 import java.util.List;
 
 @Controller
@@ -24,6 +28,7 @@ import java.util.List;
 public class ItemController {
 
     private final ItemService itemService;
+    private final FileStore fileStore;
 
     //메인 페이지
     @GetMapping
@@ -51,6 +56,7 @@ public class ItemController {
             return "/admin/item/add";
         }
 
+        log.info("ItemUpdateForm = {}", form);
         Long itemId = itemService.add(form);
         log.info("Save item = {}", itemId);
         redirectAttributes.addAttribute("itemId", itemId);
@@ -82,5 +88,12 @@ public class ItemController {
 
         itemService.update(itemId, form);
         return "redirect:/admin/items/{itemId}";
+    }
+
+    // 이미지
+    @ResponseBody
+    @GetMapping("/images/{filename}")
+    public Resource image(@PathVariable String filename) throws MalformedURLException {
+        return new UrlResource("file:" + fileStore.getFullPath(filename));
     }
 }

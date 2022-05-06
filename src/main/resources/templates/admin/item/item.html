@@ -24,7 +24,7 @@
     </div>
     <div class="row">
         <div class="m-3">
-            <img src="./KakaoTalk_20220112_164317527.jpg" width="300" height="300">
+            <img th:src="|/admin/images/${item.getImage().getStoreFileName()}|" width="300" height="300">
         </div>
         <div class="m-3">
             <div>
@@ -42,11 +42,9 @@
         </div>
     </div>
     <hr class="my-4">
-    <div class="text-center">
-        <img src="./KakaoTalk_20220112_164317527.jpg" width="300" height="300">
-    </div>
-    <div class="text-center">
-        <img src="./KakaoTalk_20220112_164317527.jpg" width="300" height="300">
+    <div class="text-center" th:each="imageFile : ${item.detailImages}">
+        <img th:src="|/admin/images/${imageFile.getStoreFileName()}|" width="300" height="300">
+        <br>
     </div>
 </div>
 </body>

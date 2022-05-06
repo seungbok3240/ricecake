@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Data
 public class Item {
@@ -23,4 +24,7 @@ public class Item {
     private Integer quantity;
 
     // 이미지 추가하기 22.04.25
+    private UploadFile image;
+
+    private List<UploadFile> detailImages;
 }

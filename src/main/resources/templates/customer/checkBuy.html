@@ -25,7 +25,7 @@
     </div>
     <div class="row" th:object="${item}">
         <div class="m-4">
-            <img src="./KakaoTalk_20220112_164317527.jpg" width="300" height="300">
+            <img th:src="|/admin/images/${item.getImage().getStoreFileName()}|" width="300" height="300">
         </div>
         <div class="m-4">
             <div th:text="*{itemName}">백설기</div>

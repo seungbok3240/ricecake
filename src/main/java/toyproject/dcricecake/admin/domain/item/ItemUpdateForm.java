@@ -2,9 +2,11 @@ package toyproject.dcricecake.admin.domain.item;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Data
 public class ItemUpdateForm {
@@ -23,4 +25,7 @@ public class ItemUpdateForm {
     private Integer quantity;
 
     // 이미지 추가하기 22.04.25
+    private MultipartFile image;
+
+    private List<MultipartFile> detailImages;
 }

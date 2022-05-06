@@ -1,5 +1,6 @@
 package toyproject.dcricecake.admin.repository.item;
 
+import org.springframework.stereotype.Repository;
 import toyproject.dcricecake.admin.domain.item.Item;
 import toyproject.dcricecake.admin.domain.item.ItemUpdateForm;
 
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 
-// @Repository
+@Repository
 public class MemoryItemRepository implements ItemRepository{
 
     private static Map<Long, Item> store = new HashMap<>();
